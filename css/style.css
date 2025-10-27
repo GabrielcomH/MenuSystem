@@ -1,0 +1,52 @@
+body {
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Cards */
+.card-modern {
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-modern img {
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-modern:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Botões */
+.btn-outline-success {
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+
+.btn-outline-success:hover {
+  background-color: #198754;
+  color: #fff;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, #212529 0%, #343a40 100%);
+}
+
+.navbar-brand {
+  font-size: 1.3rem;
+}
+
+/* Título */
+h1 {
+  letter-spacing: 1px;
+}
+
+/* Footer */
+footer {
+  background: #f1f1f1;
+  border-top: 1px solid #ddd;
+}
