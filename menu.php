@@ -3,20 +3,20 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Cardápio Online</title>
+  <title>Quiosque Barramares</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-light">
 
-  <!-- Navbar -->
+  
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
     <div class="container">
       <a class="navbar-brand fw-bold" href="index.php">🍽️ Quiosque Barramares</a>
     </div>
   </nav>
 
-  <!-- Conteúdo -->
+  
   <div class="container py-5">
     <h1 class="text-center mb-5 fw-bold text-dark">Nosso Cardápio</h1>
 

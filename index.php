@@ -7,7 +7,7 @@ include 'includes/db.php';
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Restaurante do Murilo</title>
+  <title>Quiosque Barramares</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light text-center">
