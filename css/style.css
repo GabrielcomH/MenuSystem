@@ -50,3 +50,11 @@ footer {
   background: #f1f1f1;
   border-top: 1px solid #ddd;
 }
+
+.navbar .btn-success {
+  margin-left: 15px;
+}
+
+.btn-adicionar {
+  cursor: pointer;
+}
