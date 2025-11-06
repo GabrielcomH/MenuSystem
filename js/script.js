@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    const taxaServico = subtotal * 0.10; // 10% de taxa
+    const taxaServico = subtotal * 0.10; 
     const totalGeral = subtotal + taxaServico;
 
-    cartCountBadge.innerText = totalItens; // Atualiza o número no ícone
+    cartCountBadge.innerText = totalItens; 
     cartSubtotalEl.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
     cartTaxEl.innerText = `R$ ${taxaServico.toFixed(2).replace('.', ',')}`;
     cartTotalEl.innerText = `R$ ${totalGeral.toFixed(2).replace('.', ',')}`;
