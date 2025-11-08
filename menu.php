@@ -14,7 +14,7 @@
     <div class="container">
       <a class="navbar-brand fw-bold" href="index.php">🍽️ Quiosque Barramares</a>
 
-      <button class="btn btn-sucess" type="button" data-bs-toggle="modal" data-bs-target="#carModal">
+      <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#cartModal">
         Carrinho <span class="badge bg-light text-dark" id="cart-count">0</span>
       </button>
     </div>
