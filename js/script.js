@@ -83,4 +83,38 @@ document.addEventListener('DOMContentLoaded', () => {
     cartTotalEl.innerText = `R$ ${totalGeral.toFixed(2).replace('.', ',')}`;
   }
 
-});
+  const checkoutButton = document.getElementById('checkout-button');
+
+  checkoutButton.addEventListener('click', () => {
+    const pedido = {
+      carrinho: carrinho, 
+      subtotal: document.getElementById('cart-subtotal').innerText,
+      taxa: document.getElementById('cart-tax').innerText,
+      total: document.getElementById('cart-total').innerText
+    };
+
+    fetch('finalizar_pedido.php', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+      body: JSON.stringify(pedido) 
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Pedido realizado com sucesso!'); 
+        carrinho = []; 
+        atualizarModalCarrinho();
+        cartModal.hide(); 
+      } else {
+        alert('Erro ao finalizar o pedido: ' + data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Erro na requisição:', error);
+      alert('Ocorreu um erro de conexão. Tente novamente.');
+    });
+  });
+
+}); 

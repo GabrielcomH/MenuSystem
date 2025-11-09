@@ -93,6 +93,7 @@
           </div>
           <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">Continuar Pedindo</button>
           <button type="button" class="btn btn-danger mt-3" id="clear-cart">Limpar Carrinho</button>
+          <button type="button" class="btn btn-success mt-3" id="checkout-button">Finalizar Pedido</button> 
         </div>
       </div>
     </div>
