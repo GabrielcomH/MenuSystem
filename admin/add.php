@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container py-5">
     <div class="card shadow col-lg-6 mx-auto">
 
-        <h3 class="titulo text-center mb-4">➕ Adicionar novo prato</h3>
+        <h3 class="titulo text-center mb-4">➕ Adicionar novos pratos</h3>
 
         <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 
