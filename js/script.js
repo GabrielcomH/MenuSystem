@@ -86,34 +86,42 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkoutButton = document.getElementById('checkout-button');
 
   checkoutButton.addEventListener('click', () => {
+ 
+    if (carrinho.length === 0) {
+      alert("Seu carrinho está vazio!");
+      return;
+   }
+
+    let mesa = prompt("Por favor, digite o número da sua mesa:");
+
+    if (!mesa) return; 
+
     const pedido = {
+      mesa: mesa, 
       carrinho: carrinho, 
       subtotal: document.getElementById('cart-subtotal').innerText,
       taxa: document.getElementById('cart-tax').innerText,
       total: document.getElementById('cart-total').innerText
-    };
+     };
 
-    fetch('finalizar_pedido.php', {
+     fetch('finalizar_pedido.php', {
       method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json', 
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(pedido) 
     })
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        alert('Pedido realizado com sucesso!'); 
+        alert('Pedido enviado para a cozinha! Mesa: ' + mesa); 
         carrinho = []; 
         atualizarModalCarrinho();
         cartModal.hide(); 
       } else {
-        alert('Erro ao finalizar o pedido: ' + data.message);
+        alert('Erro: ' + data.message);
       }
     })
     .catch(error => {
-      console.error('Erro na requisição:', error);
-      alert('Ocorreu um erro de conexão. Tente novamente.');
+       console.error('Erro:', error);
     });
   });
 

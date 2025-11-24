@@ -1,5 +1,4 @@
 <?php
-
 include 'includes/db.php';
 
 header('Content-Type: application/json');
@@ -8,8 +7,9 @@ $dadosJson = file_get_contents('php://input');
 $dados = json_decode($dadosJson);
 $resposta = ['success' => false, 'message' => 'Erro desconhecido.'];
 
-if ($dados && isset($dados->carrinho) && isset($dados->total)) {
+if ($dados && isset($dados->mesa)) {
     
+    $mesa = intval($dados->mesa); 
     $subtotal = floatval(str_replace(['R$ ', '.', ','], ['', '', '.'], $dados->subtotal));
     $taxa = floatval(str_replace(['R$ ', '.', ','], ['', '', '.'], $dados->taxa));
     $total = floatval(str_replace(['R$ ', '.', ','], ['', '', '.'], $dados->total));
@@ -17,12 +17,15 @@ if ($dados && isset($dados->carrinho) && isset($dados->total)) {
     $conn->begin_transaction();
 
     try {
-        $stmt = $conn->prepare("INSERT INTO pedidos (valor_subtotal, valor_taxa, valor_total) VALUES (?, ?, ?)");
-        $stmt->bind_param("ddd", $subtotal, $taxa, $total);
+       
+        $stmt = $conn->prepare("INSERT INTO pedidos (mesa, valor_subtotal, valor_taxa, valor_total) VALUES (?, ?, ?, ?)");
+       
+        $stmt->bind_param("iddd", $mesa, $subtotal, $taxa, $total);
         $stmt->execute();
         
         $id_pedido = $conn->insert_id;
 
+     
         $stmt_item = $conn->prepare("INSERT INTO pedido_itens (id_pedido, nome_produto, quantidade, preco_unitario) VALUES (?, ?, ?, ?)");
         
         foreach ($dados->carrinho as $item) {
@@ -39,7 +42,7 @@ if ($dados && isset($dados->carrinho) && isset($dados->total)) {
     }
 
 } else {
-    $resposta = ['success' => false, 'message' => 'Dados do pedido incompletos.'];
+    $resposta = ['success' => false, 'message' => 'Faltou informar a mesa.'];
 }
 
 echo json_encode($resposta);
