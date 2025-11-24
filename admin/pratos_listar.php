@@ -1,8 +1,8 @@
 <?php
-require_once "auth_check.php"; // Protege a página
-include '../includes/db.php'; // Conecta ao banco
+require_once "auth_check.php"; 
+include '../includes/db.php'; 
 
-// Pega todos os pratos do banco
+
 $result = $conn->query("SELECT * FROM pratos ORDER BY id DESC");
 ?>
 

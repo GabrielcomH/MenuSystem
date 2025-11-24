@@ -18,5 +18,12 @@ include 'includes/db.php';
     <a href="menu.php" class="btn btn-primary btn-lg mt-3">Ver Cardápio</a>
   </div>
 
+  <nav class="d-flex justify-content-end p-3">
+    <a href="admin/login.php" class="btn btn-sm btn-outline-secondary" style="opacity: 0.6;">
+        Admin
+    </a>
+</nav>
+
+
 </body>
 </html>

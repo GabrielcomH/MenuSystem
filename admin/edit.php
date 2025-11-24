@@ -5,13 +5,11 @@ include '../includes/db.php';
 $mensagem = '';
 $id = $_GET['id'] ?? null;
 
-// Se não tem ID, não tem o que editar
 if (!$id) {
     header('Location: pratos_listar.php');
     exit;
 }
 
-// Busca o prato atual no banco
 $stmt = $conn->prepare("SELECT * FROM pratos WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -23,17 +21,15 @@ if (!$prato) {
     exit;
 }
 
-// Se o formulário for enviado (POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
     $preco = $_POST['preco'];
-    $nome_imagem_antiga = $prato['imagem']; // Salva o nome da imagem atual
+    $nome_imagem_antiga = $prato['imagem']; 
 
-    // Por padrão, usa a imagem antiga
+    
     $nome_imagem = $nome_imagem_antiga;
 
-    // Verifica se uma NOVA imagem foi enviada
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $imagem = $_FILES['imagem'];
         $upload_dir = '../img/';
@@ -41,17 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $caminho_imagem = $upload_dir . $nome_imagem;
 
         if (move_uploaded_file($imagem['tmp_name'], $caminho_imagem)) {
-            // Se o upload da nova imagem deu certo, apaga a antiga
             if ($nome_imagem_antiga && file_exists($upload_dir . $nome_imagem_antiga)) {
                 unlink($upload_dir . $nome_imagem_antiga);
             }
         } else {
-            $nome_imagem = $nome_imagem_antiga; // Falhou o upload, mantém a antiga
+            $nome_imagem = $nome_imagem_antiga; 
             $mensagem = "Erro no upload da nova imagem. A imagem anterior foi mantida.";
         }
     }
 
-    // Atualiza o banco de dados
     $stmt_update = $conn->prepare("UPDATE pratos SET nome = ?, descricao = ?, preco = ?, imagem = ? WHERE id = ?");
     $stmt_update->bind_param("ssdsi", $nome, $descricao, $preco, $nome_imagem, $id);
     
